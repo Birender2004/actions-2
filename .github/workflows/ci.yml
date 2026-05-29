@@ -1,0 +1,23 @@
+name: "CI-Pipeline"
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  image_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: cloning the code
+        uses: actions/checkout@v4
+
+      - name: building the image
+        run: docker build -t birender2026/login-app .
+      
+      - name: logging into the docker account
+        run: ${{PASS}} | docker login -u ${{USER}} --password-stdin
+      
+      - name: pushing the image
+        run: docker push birender2026/login-app
+  
