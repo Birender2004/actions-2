@@ -16,7 +16,7 @@ jobs:
         run: docker build -t birender2026/login-app .
       
       - name: logging into the docker account
-        run: echo ${{PASS}} | docker login -u ${{USER}} --password-stdin
+        run: echo "${{PASS}}" | docker login -u "${{USER}}" --password-stdin
       
       - name: pushing the image
         run: docker push birender2026/login-app
